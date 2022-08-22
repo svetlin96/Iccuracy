@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style type="text/css">
+        @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+    </style>
+    <script type="text/javascript" src="main.js"></script>
+
+</head>
+
+<body>
+    <h1><i class="fa fa-shopping-cart"></i></h1>
+    <section>
+        <div>
+            <img src="images/shopify.png">
+            <p>
+                <b>Basic</b> <br> you need to<br> create your store, ship<br> products, and process<br> payments
+            </p>
+            <h6>$29/mo</h6>
+            <span></span>
+            <button class="cart">Add-cart</button>
+            <button class="info">More info</button>
+        </div>
+        <div>
+            <img src="images/shopify.png">
+            <p>
+                <b>Shopify</b><br> Level up your business with<br> professional reporting and <br>more staff accounts
+            </p>
+            <h6>$79/mo</h6>
+            <span></span>
+            <button class="cart">Add-cart</button>
+            <button class="info">More info</button>
+        </div>
+        <div>
+            <img src="images/shopify.png">
+            <p>
+                <b>Advance</b><br> Get the best of Shopify with <br> reporting and our <br> transaction fees
+            </p>
+            <h6>$29/mo</h6>
+            <span></span>
+            <button class="cart">Add-cart</button>
+            <button class="info">More info</button>
+        </div>
+    </section>
+    <div class="select">
+        <button id="closeCart">
+            close
+        </button>
+    </div>
+    <div id="productInfo">
+        
+        <img src="images/shopify.png" alt="">
+        <p>Shopify Product Info</p>
+        <button id="closeBtn">close</button>
+    </div>
+
+
+</body>
+
+</html>
+<script>
+
+    var noti = document.querySelector('h1');
+    var select = document.querySelector('.select');
+    var cartButtons = document.querySelectorAll('.cart');
+    var infoButtons = document.querySelectorAll('.info');
+    var closeCart = document.querySelectorAll('.closeCart')
+    
+    
+    for (but of cartButtons) {
+        but.addEventListener('click', (e) => {
+            var add = Number(noti.getAttribute('data-count') || 0);
+            noti.setAttribute('data-count', add + 1);
+            noti.classList.add('zero');
+
+            var parent = e.target.parentNode;
+            var clone = parent.cloneNode(true);
+            select.appendChild(clone);
+            clone.lastElementChild.innerText = "Buy-now";
+            if (clone) {
+                noti.onclick = () => {
+                    select.classList.toggle('display')
+                }
+            }
+            var image = e.target.parentNode.querySelector('img');
+            var span = e.target.parentNode.querySelector('span');
+            var s_image = image.cloneNode(false);
+            span.appendChild(s_image);
+            span.classList.add('active');
+            setTimeout(() => {
+                span.removeChild(s_image);
+                span.classList.remove('active');
+            }, 500)
+        })
+    }
+
+    for (but of infoButtons) {
+        but.addEventListener('click', (e) => {
+            let productInfoElement = document.getElementById('productInfo')
+            productInfoElement.style.display = "block"
+
+
+
+            let closeProductInfo = document.getElementById('closeBtn')
+            closeProductInfo.addEventListener('click', e => {
+                console.log('here')
+                productInfoElement.style.display = "none"
+
+            })
+        })
+
+
+    }
+
+
+
+
+</script>
